@@ -1,3 +1,9 @@
+lokinet (0.5.0~pre20190801-3~deb9) stretch; urgency=medium
+
+  * Fix "boostrap.signed" misnaming in deb postinst
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 01 Aug 2019 16:59:56 -0300
+
 lokinet (0.5.0~pre20190801-2~deb9) stretch; urgency=medium
 
   * Replace tmpdir in generated config file
