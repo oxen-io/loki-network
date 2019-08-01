@@ -1,3 +1,9 @@
+lokinet (0.5.0~pre20190801-3~ubuntu1904) disco; urgency=medium
+
+  * Fix "boostrap.signed" misnaming in deb postinst
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 01 Aug 2019 16:59:57 -0300
+
 lokinet (0.5.0~pre20190801-2~ubuntu1904) disco; urgency=medium
 
   * Replace tmpdir in generated config file
