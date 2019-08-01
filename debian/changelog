@@ -1,3 +1,9 @@
+lokinet (0.5.0~pre20190801-2~ubuntu1904) disco; urgency=medium
+
+  * Replace tmpdir in generated config file
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 01 Aug 2019 16:38:26 -0300
+
 lokinet (0.5.0~pre20190801-1~ubuntu1904) disco; urgency=medium
 
   [ Michael ]
