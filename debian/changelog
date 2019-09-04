@@ -1,3 +1,9 @@
+lokinet (0.5.0-2~ubuntu1904) disco; urgency=medium
+
+  * Patch lokinet-bootstrap to use system bootstrap path when run as root
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Wed, 04 Sep 2019 15:54:59 -0300
+
 lokinet (0.5.0-1~ubuntu1904) disco; urgency=medium
 
   [ Rick V ]
