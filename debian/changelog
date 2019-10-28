@@ -1,3 +1,10 @@
+lokinet (0.5.2-1~ubuntu1910) eoan; urgency=medium
+
+  [ Jason Rhinelander ]
+  * Add eoan build
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Fri, 28 Oct 2019 02:14:01 -0300
+
 lokinet (0.5.2-1~ubuntu1904) disco; urgency=medium
 
   [ Ryan Tharp ]
