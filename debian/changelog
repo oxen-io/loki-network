@@ -1,3 +1,9 @@
+lokinet (0.5.2-3~ubuntu1910) eoan; urgency=medium
+
+  * Fix broken RequireFileExists systemd directive
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 29 Oct 2019 15:13:20 -0300
+
 lokinet (0.5.2-2~ubuntu1910) eoan; urgency=medium
 
   * Split client and router config/services into separate packages
