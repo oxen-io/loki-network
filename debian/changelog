@@ -1,3 +1,9 @@
+lokinet (0.5.2-2~ubuntu1904) disco; urgency=medium
+
+  * Split client and router config/services into separate packages
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 29 Oct 2019 14:07:10 -0300
+
 lokinet (0.5.2-1~ubuntu1904) disco; urgency=medium
 
   [ Ryan Tharp ]
