@@ -1,3 +1,9 @@
+lokinet (0.5.2-4~deb9) stretch; urgency=medium
+
+  * Rename split packages to lokinet{,-bin,-router}
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 29 Oct 2019 16:18:17 -0300
+
 lokinet (0.5.2-3~deb9) stretch; urgency=medium
 
   * Fix broken RequireFileExists systemd directive
