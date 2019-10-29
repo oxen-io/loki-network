@@ -1,3 +1,9 @@
+lokinet (0.5.2-2~ubuntu1910) eoan; urgency=medium
+
+  * Split client and router config/services into separate packages
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 29 Oct 2019 14:07:09 -0300
+
 lokinet (0.5.2-1~ubuntu1910) eoan; urgency=medium
 
   [ Jason Rhinelander ]
