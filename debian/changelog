@@ -1,3 +1,15 @@
+lokinet (0.6.0~rc2-2~deb9) stretch; urgency=medium
+
+  * Refreshed patches
+  * added libcurl dep
+  * Pass debian version as GIT_VERSION
+  * Disable failing 1024 test
+  * enable network to allow vendored libsodium
+  * lokinet-rcutil renamed to lokinetctl
+  * cherry-picked libabyss read fix
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Sun, 15 Dec 2019 13:25:09 -0400
+
 lokinet (0.6.0~rc2-1~deb9) stretch; urgency=medium
 
   [ Jeff Becker ]
