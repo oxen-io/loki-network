@@ -1,3 +1,9 @@
+lokinet (0.6.0~rc2+git20191215-3~deb9) stretch; urgency=medium
+
+  * Disable NATIVE_BUILD
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 16 Dec 2019 15:21:05 -0400
+
 lokinet (0.6.0~rc2+git20191215-2~deb9) stretch; urgency=medium
 
   * Rediff patches
