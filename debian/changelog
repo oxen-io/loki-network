@@ -1,3 +1,9 @@
+lokinet (0.6.0~rc2+git20191215-1~deb9) stretch; urgency=medium
+
+  * Added git date to version
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Sun, 15 Dec 2019 23:36:44 -0400
+
 lokinet (0.6.0~rc2-3~deb9) stretch; urgency=medium
 
   [ Jeff Becker ]
