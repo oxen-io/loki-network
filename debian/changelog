@@ -1,3 +1,11 @@
+lokinet (0.6.1-2~deb9) stretch; urgency=medium
+
+  * Fix lokinet-router not enabling by default
+  * Fix default testnet router config
+  * Fix bootstrap file assertion in service files
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Sat, 28 Dec 2019 13:32:53 -0400
+
 lokinet (0.6.1-1~deb9) stretch; urgency=medium
 
   [ Ryan Tharp ]
