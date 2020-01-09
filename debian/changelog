@@ -1,3 +1,9 @@
+lokinet (0.6.2-2~deb9) stretch; urgency=medium
+
+  * Enable cpu AVX2 detection on amd64
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Wed, 08 Jan 2020 22:19:12 -0400
+
 lokinet (0.6.2-1~deb9) stretch; urgency=medium
 
   [ Jason Rhinelander ]
