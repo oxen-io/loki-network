@@ -1,3 +1,9 @@
+lokinet (0.6.2-2~ubuntu1904) disco; urgency=medium
+
+  * Enable cpu AVX2 detection on amd64
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Wed, 08 Jan 2020 22:19:19 -0400
+
 lokinet (0.6.2-1~ubuntu1904) disco; urgency=medium
 
   [ Jason Rhinelander ]
