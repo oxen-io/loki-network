@@ -1,3 +1,9 @@
+lokinet (0.6.2-3~ubuntu1904) disco; urgency=medium
+
+  * Use systemd service capabilities instead of setcap
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Tue, 14 Jan 2020 18:59:02 -0400
+
 lokinet (0.6.2-2~ubuntu1904) disco; urgency=medium
 
   * Enable cpu AVX2 detection on amd64
