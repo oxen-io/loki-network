@@ -1,6 +1,7 @@
 lokinet (0.6.3-1~ubuntu1904) disco; urgency=medium
 
   [ Jason Rhinelander ]
+  * Rediff patches
   * Enable cpu detection on amd64
 
   [ Jeff Becker ]
