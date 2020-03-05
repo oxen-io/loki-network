@@ -1,5 +1,13 @@
 lokinet (0.7.0~rc2-1~deb9) stretch; urgency=medium
 
+  * Drop cmake patch (interferes with gbp patch management)
+  * Rediff patches
+  * date.h cmake compat fix
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Thu, 05 Mar 2020 18:23:14 -0400
+
+lokinet (0.7.0~rc2-1~deb9) stretch; urgency=medium
+
   [ Ryan Tharp ]
   * bring gitlab ci up to date, mhas it make a static linux release tarball
   * Combine tar and xz into one command
