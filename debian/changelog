@@ -1,3 +1,9 @@
+lokinet (0.7.0~rc3-2~deb9) stretch; urgency=medium
+
+  * Remove setcap; re-add libsodium 1.0.18 dep
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Sat, 14 Mar 2020 01:37:27 -0300
+
 lokinet (0.7.0~rc3-1~deb9) stretch; urgency=medium
 
   [ Jason Rhinelander ]
