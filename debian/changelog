@@ -1,3 +1,9 @@
+lokinet (0.7.0~rc3-2~ubuntu1910) eoan; urgency=medium
+
+  * Remove setcap deps
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Sat, 14 Mar 2020 01:37:51 -0300
+
 lokinet (0.7.0~rc3-1~ubuntu1910) eoan; urgency=medium
 
   [ Jason Rhinelander ]
