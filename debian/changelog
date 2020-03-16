@@ -1,3 +1,17 @@
+lokinet (0.7.0-1~deb9) stretch; urgency=medium
+
+  [ Jeff Becker ]
+  * add an A Record for random.snode so that it works
+
+  [ jeff ]
+  * discard unknown fields in introset for future use
+
+  [ Jeff Becker ]
+  * fix memleak in jsonrpc
+  * cleanup
+
+ -- Jason Rhinelander <jason@imaginary.ca>  Mon, 16 Mar 2020 14:07:13 -0300
+
 lokinet (0.7.0~rc3-2~deb9) stretch; urgency=medium
 
   * Remove setcap; re-add libsodium 1.0.18 dep
