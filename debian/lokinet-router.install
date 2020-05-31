@@ -1,1 +1,5 @@
+#!/usr/bin/dh-exec
+
 debian/ufw/lokinet /etc/ufw/applications.d
+debian/lokinet-router.lokinet-router.service => /lib/systemd/system/lokinet-router.service
+debian/lokinet-router.lokinet-testnet-router.service => /lib/systemd/system/lokinet-testnet-router.service
