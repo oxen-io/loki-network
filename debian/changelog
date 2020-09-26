@@ -1,6 +1,6 @@
-lokinet (0.8.0~pre1-1~ubuntu1804) bionic; urgency=medium
+lokinet (0.8.0~pre1-1~ubuntu1604) xenial; urgency=medium
 
-  * Bionic deb.
+  * Xenial deb.
 
  -- Jason Rhinelander <jason@imaginary.ca>  Wed, 23 Sep 2020 16:51:57 -0300
 
