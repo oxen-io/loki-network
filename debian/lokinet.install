@@ -1,2 +1,4 @@
 debian/00-lokinet.conf /etc/systemd/resolved.conf.d
 debian/lokinet-resolvconf /usr/sbin
+debian/lokinet.service /lib/systemd/system
+debian/lokinet-testnet.service /lib/systemd/system

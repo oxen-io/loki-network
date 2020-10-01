@@ -1,1 +1,3 @@
 debian/ufw/lokinet-router /etc/ufw/applications.d
+debian/lokinet-router.service /lib/systemd/system
+debian/lokinet-testnet-router.service /lib/systemd/system
