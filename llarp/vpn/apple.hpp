@@ -41,7 +41,7 @@ namespace llarp::vpn
     static void
     Exec(std::string cmd)
     {
-      LogDebug(cmd);
+      LogDebug("exec: ", cmd);
       system(cmd.c_str());
     }
 
