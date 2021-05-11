@@ -41,7 +41,7 @@ namespace llarp::net
   void
   Execute(std::string cmd)
   {
-    LogInfo(cmd);
+    LogInfo("exec:", cmd);
     system(cmd.c_str());
   }
 #endif
