@@ -15,10 +15,15 @@ if(CCACHE_PROGRAM)
   endforeach()
 endif()
 
+set(LANGS C CXX)
+if(APPLE)
+  set(LANGS ${LANGS} OBJC)
+endif()
+
 project(lokinet
     VERSION 0.9.5
     DESCRIPTION "lokinet - IP packet onion router"
-    LANGUAGES C CXX)
+    LANGUAGES ${LANGS})
 
 set(RELEASE_MOTTO "A Series of Tubes" CACHE STRING "Release motto")
 
@@ -331,13 +336,14 @@ endif()
 
 add_subdirectory(crypto)
 add_subdirectory(llarp)
-add_subdirectory(daemon)
+
+if(NOT APPLE)
+  add_subdirectory(daemon)
+endif()
+
 if(WITH_HIVE)
   add_subdirectory(pybind)
 endif()
-
-
-
 if (NOT SHADOW)
   if(WITH_TESTS OR WITH_HIVE)
     add_subdirectory(test)

@@ -335,6 +335,10 @@ set_target_properties(libzmq PROPERTIES
   INTERFACE_LINK_LIBRARIES "${libzmq_link_libs}"
   INTERFACE_COMPILE_DEFINITIONS "ZMQ_STATIC")
 
+if(APPLE)
+  return()
+endif()
+
 set(curl_extra)
 if(WIN32)
   set(curl_ssl_opts --without-ssl --with-schannel)
