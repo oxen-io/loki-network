@@ -1,4 +1,4 @@
-#include <lokinet-framework.hpp>
+#include <lokinet-extension.hpp>
 #include <llarp.hpp>
 
 #include <llarp/config/config.hpp>
@@ -14,7 +14,7 @@ namespace llarp::apple
     
     explicit FrameworkContext(NEPacketTunnelProvider * tunnel);
 
-    ~FrameworkContext();
+    ~FrameworkContext() {}
     
     std::shared_ptr<vpn::Platform>
     makeVPNPlatform() override;

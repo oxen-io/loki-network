@@ -267,7 +267,7 @@ if(APPLE)
   find_library(NETEXT NetworkExtension REQUIRED)
   find_library(COREFOUNDATION CoreFoundation REQUIRED)
   
-  add_library(lokinet-extension STATIC
+  add_library(lokinet-extension SHARED
     framework.mm
     ${CMAKE_SOURCE_DIR}/include/lokinet-extension.hpp)
   target_include_directories(lokinet-extension PUBLIC
