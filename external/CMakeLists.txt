@@ -60,10 +60,6 @@ set(ENABLE_BORINGSSL OFF CACHE BOOL "Disable boringssl for ngtcp2")
 add_definitions(-D_GNU_SOURCE)
 add_subdirectory(ngtcp2 EXCLUDE_FROM_ALL)
 
-if(APPLE)
-  return()
-endif()
-
 # cpr configuration.  Ideally we'd just do this via add_subdirectory, but cpr's cmake requires
 # 3.15+, and we target lower than that (and this is fairly simple to build).
 

@@ -2,17 +2,12 @@
 #include <Foundation/Foundation.h>
 #include <NetworkExtension/NetworkExtension.h>
 
-#include <memory>
-
-namespace llarp::apple
-{
-  class ContextWrapper;
-}
+struct ContextWrapper;
 
 @interface LLARPPacketTunnel : NEPacketTunnelProvider
 {
  @private
-  std::shared_ptr<llarp::apple::ContextWrapper> m_Context;
+  struct ContextWrapper* m_Context;
 }
 - (void)startTunnelWithOptions:(NSDictionary<NSString*, NSObject*>*)options
              completionHandler:(void (^)(NSError* error))completionHandler;

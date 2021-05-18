@@ -281,12 +281,13 @@ if(APPLE)
     FRAMEWORK TRUE
     FRAMEWORK_VERSION CXX
     MACOSX_FRAMEWORK_IDENTIFIER org.lokinet.NetworkExtension
-    MACOSX_FRAMEWORK_INFO_PLIST ${CMAKE_SOURCE_DIR}/contrib/macos/Info.plist
+    MACOSX_FRAMEWORK_INFO_PLIST ${CMAKE_SOURCE_DIR}/contrib/macos/LokinetExtension.Info.plist
     # "current version" in semantic format in Mach-O binary file
     VERSION 16.4.0
     # "compatibility version" in semantic format in Mach-O binary file
     SOVERSION 1.0.0
     PUBLIC_HEADER ${CMAKE_SOURCE_DIR}/include/lokinet-extension.hpp)
+  
 endif()
 
 foreach(lokinet_lib liblokinet lokinet-platform lokinet-util lokinet-cryptography)

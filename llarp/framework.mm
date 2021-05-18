@@ -25,30 +25,7 @@ namespace llarp::apple
   private:
     NEPacketTunnelProvider * m_Tunnel;
     std::unique_ptr<std::thread> m_Runner;
-  };
-
-  class ContextWrapper
-  {
-    std::shared_ptr<FrameworkContext> m_Context;
-  public:
-    explicit ContextWrapper(NEPacketTunnelProvider * tunnel) :
-      m_Context{std::make_shared<FrameworkContext>(tunnel)}
-    {}
-
-    void
-    Start()
-    {
-      m_Context->Start();
-    }
-
-    void
-    Stop()
-    {
-      m_Context->CloseAsync();
-      m_Context->Wait();
-    }
-  };
-  
+  };  
 
   class VPNInterface final : public vpn::NetworkInterface
   {
@@ -177,10 +154,35 @@ namespace llarp::apple
   }
 }
 
+
+struct ContextWrapper
+{
+  std::shared_ptr<llarp::apple::FrameworkContext> m_Context;
+public:
+  explicit ContextWrapper(NEPacketTunnelProvider * tunnel) :
+    m_Context{std::make_shared<llarp::apple::FrameworkContext>(tunnel)}
+  {}
+
+  void
+  Start()
+  {
+    m_Context->Start();
+  }
+
+  void
+  Stop()
+  {
+    m_Context->CloseAsync();
+    m_Context->Wait();
+  }
+};
+  
+
+
 @implementation LLARPPacketTunnel
 
 - (void)startTunnelWithOptions:(NSDictionary<NSString *,NSObject *> *)options completionHandler:(void (^)(NSError *error))completionHandler {
-  m_Context = std::make_shared<llarp::apple::ContextWrapper>(self);
+  m_Context = new ContextWrapper{self};
   m_Context->Start();
   completionHandler(nullptr);
 }
@@ -190,6 +192,8 @@ completionHandler:(void (^)(void))completionHandler {
   if(m_Context)
   {
     m_Context->Stop();
+    delete m_Context;
+    m_Context = nullptr;
   }
   completionHandler();
 }
