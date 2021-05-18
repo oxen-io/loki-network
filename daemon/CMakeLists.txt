@@ -1,7 +1,12 @@
 if(APPLE)
-  add_executable(lokinet lokinet.swift)
-  configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Lokinet.modulemap.in ${CMAKE_CURRENT_BINARY_DIR}/swift/LokinetExtension/module.modulemap ESCAPE_QUOTES @ONLY)
-  target_include_directories(lokinet PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/swift)
+  option(WITH_SWIFT "use swift" ON)
+  if(WITH_SWIFT)
+    add_executable(lokinet lokinet.swift)
+    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Lokinet.modulemap.in ${CMAKE_CURRENT_BINARY_DIR}/swift/LokinetExtension/module.modulemap ESCAPE_QUOTES @ONLY)
+    target_include_directories(lokinet PUBLIC ${CMAKE_CURRENT_BINARY_DIR}/swift)
+  else()
+    add_executable(lokinet lokinet.mm)
+  endif()
   target_link_libraries(lokinet PUBLIC lokinet-extension)
 else()
   add_executable(lokinet lokinet.cpp)
@@ -67,15 +72,16 @@ foreach(exe ${exetargets})
 endforeach()
 
 if(APPLE)
-  add_custom_command(TARGET lokinet
-    POST_BUILD
-    COMMAND ${CMAKE_INSTALL_NAME_TOOL} -add_rpath "@executable_path/../../Frameworks/" $<TARGET_FILE:lokinet>
-    )
+#  add_custom_command(TARGET lokinet
+#    POST_BUILD
+#    COMMAND ${CMAKE_COMMAND} -E echo "setting rpath"
+#    COMMAND ${CMAKE_INSTALL_NAME_TOOL} -add_rpath "@executable_path/../Frameworks/" $<TARGET_FILE:lokinet>
+#    )
   add_custom_target(icons ALL
     COMMAND ${PROJECT_SOURCE_DIR}/contrib/macos/mk-icns.sh ${PROJECT_SOURCE_DIR}/contrib/lokinet.svg ${CMAKE_CURRENT_BINARY_DIR}/lokinet.icns
     DEPENDS ${PROJECT_SOURCE_DIR}/contrib/lokinet.svg ${PROJECT_SOURCE_DIR}/contrib/macos/mk-icns.sh)
   add_dependencies(lokinet icons lokinet-extension)
-  install(TARGETS lokinet-extension FRAMEWORK DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Lokinet.app/Resources/Frameworks/" COMPONENT lokinet)
+  install(TARGETS lokinet-extension FRAMEWORK DESTINATION "${CMAKE_CURRENT_BINARY_DIR}/Lokinet.app/Contents/Frameworks" COMPONENT lokinet)
   set_target_properties(lokinet
     PROPERTIES
     MACOSX_BUNDLE TRUE
@@ -92,7 +98,7 @@ if(APPLE)
   if (CODESIGN_KEY)
     message(STATUS "codesigning with ${CODESIGN_KEY}")
     set(SIGN_TARGET "${CMAKE_CURRENT_BINARY_DIR}/Lokinet.app")
-    set(SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/contrib/macos/lokinet.entitlements")
+    set(SIGN_ENTITLEMENTS "${CMAKE_SOURCE_DIR}/contrib/macos/lokinet.entitlements.plist")
     configure_file(
       "${PROJECT_SOURCE_DIR}/contrib/macos/sign.sh.in"
       "${CMAKE_BINARY_DIR}/sign.sh")
