@@ -1047,7 +1047,6 @@ namespace llarp
         Comment{
             "Log type (format). Valid options are:",
             "  file - plaintext formatting",
-            "  json - json-formatted log statements",
             "  syslog - logs directed to syslog",
         });
 
