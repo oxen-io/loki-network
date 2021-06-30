@@ -15,4 +15,7 @@ struct ContextWrapper;
 - (void)stopTunnelWithReason:(NEProviderStopReason)reason
            completionHandler:(void (^)(void))completionHandler;
 
+- (void)handleAppMessage:(NSData*)messageData
+       completionHandler:(void (^)(NSData* responseData))completionHandler;
+
 @end

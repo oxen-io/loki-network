@@ -1,20 +1,29 @@
-// AppDelegateExtension.swift
-
+import AppKit
 import Foundation
 import LokinetExtension
 import NetworkExtension
 
-class LokinetMain: NSObject {
-    var vpnManager = NETunnelProviderManager()
+let app = NSApplication.shared
 
+class LokinetMain: NSObject, NSApplicationDelegate {
+    var vpnManager = NETunnelProviderManager()
     let lokinetComponent = "org.lokinet.NetworkExtension"
     var lokinetAdminTimer: DispatchSourceTimer?
 
-    func runMain() {
+    func applicationDidFinishLaunching(_: Notification) {
+        setupVPNJizz()
+    }
+
+    func bail() {
+        app.terminate(self)
+    }
+
+    func setupVPNJizz() {
         print("Starting up lokinet")
-        NETunnelProviderManager.loadAllFromPreferences { (savedManagers: [NETunnelProviderManager]?, error: Error?) in
+        NETunnelProviderManager.loadAllFromPreferences { [self] (savedManagers: [NETunnelProviderManager]?, error: Error?) in
             if let error = error {
                 print(error)
+                bail()
             }
 
             if let savedManagers = savedManagers {
@@ -33,20 +42,26 @@ class LokinetMain: NSObject {
             self.vpnManager.saveToPreferences(completionHandler: { error -> Void in
                 if error != nil {
                     print("Error saving to preferences")
+                    print(error as Any)
+                    bail()
                 } else {
-                    print("saved...")
                     self.vpnManager.loadFromPreferences(completionHandler: { error in
                         if error != nil {
                             print("Error loading from preferences")
+                            print(error as Any)
+                            bail()
                         } else {
                             do {
                                 print("Trying to start")
                                 self.initializeConnectionObserver()
                                 try self.vpnManager.connection.startVPNTunnel()
+                                print("we up umu")
                             } catch let error as NSError {
                                 print(error)
+                                bail()
                             } catch {
                                 print("There was a fatal error")
+                                bail()
                             }
                         }
                     })
@@ -73,5 +88,6 @@ class LokinetMain: NSObject {
     }
 }
 
-let lokinet = LokinetMain()
-lokinet.runMain()
+let delegate = LokinetMain()
+app.delegate = delegate
+app.run()
