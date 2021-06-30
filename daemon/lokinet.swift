@@ -1,32 +1,42 @@
 // AppDelegateExtension.swift
-// lifed from yggdrasil network ios port
-//
 
 import Foundation
-import NetworkExtension
 import LokinetExtension
+import NetworkExtension
 
 class LokinetMain: NSObject {
-    var vpnManager: NETunnelProviderManager = NETunnelProviderManager()
+    var vpnManager = NETunnelProviderManager()
 
     let lokinetComponent = "org.lokinet.NetworkExtension"
     var lokinetAdminTimer: DispatchSourceTimer?
 
-
     func runMain() {
         print("Starting up lokinet")
-        let providerProtocol = NETunnelProviderProtocol()
-        providerProtocol.providerBundleIdentifier = self.lokinetComponent
-        providerProtocol.isEnabled = true
-        self.vpnManager.protocolConfiguration = providerProtocol
+        NETunnelProviderManager.loadAllFromPreferences { (savedManagers: [NETunnelProviderManager]?, error: Error?) in
+            if let error = error {
+                print(error)
+            }
 
-        self.vpnManager.saveToPreferences(completionHandler: {(error) -> Void in
-                if(error != nil) {
+            if let savedManagers = savedManagers {
+                for manager in savedManagers {
+                    if (manager.protocolConfiguration as? NETunnelProviderProtocol)?.providerBundleIdentifier == self.lokinetComponent {
+                        print("Found saved VPN Manager")
+                        self.vpnManager = manager
+                    }
+                }
+            }
+            let providerProtocol = NETunnelProviderProtocol()
+            providerProtocol.serverAddress = "lokinet"
+            providerProtocol.providerBundleIdentifier = self.lokinetComponent
+            self.vpnManager.protocolConfiguration = providerProtocol
+            self.vpnManager.isEnabled = true
+            self.vpnManager.saveToPreferences(completionHandler: { error -> Void in
+                if error != nil {
                     print("Error saving to preferences")
                 } else {
                     print("saved...")
-                    self.vpnManager.loadFromPreferences(completionHandler: { (error) in
-                        if (error != nil) {
+                    self.vpnManager.loadFromPreferences(completionHandler: { error in
+                        if error != nil {
                             print("Error loading from preferences")
                         } else {
                             do {
@@ -41,12 +51,12 @@ class LokinetMain: NSObject {
                         }
                     })
                 }
-                                          })
-        print("wait...")
+            })
+        }
     }
 
-    func initializeConnectionObserver () {
-        NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: self.vpnManager.connection, queue: OperationQueue.main) { (notification) -> Void in
+    func initializeConnectionObserver() {
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.NEVPNStatusDidChange, object: vpnManager.connection, queue: OperationQueue.main) { _ -> Void in
 
             if self.vpnManager.connection.status == .invalid {
                 print("VPN configuration is invalid")
@@ -62,7 +72,6 @@ class LokinetMain: NSObject {
         }
     }
 }
-
 
 let lokinet = LokinetMain()
 lokinet.runMain()

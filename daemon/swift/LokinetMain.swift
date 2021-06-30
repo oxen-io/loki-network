@@ -3,15 +3,14 @@
 //
 
 import Foundation
-import NetworkExtension
 import Lokinet
+import NetworkExtension
 
 class LokinetMain: PlatformAppDelegate {
-    var vpnManager: NETunnelProviderManager = NETunnelProviderManager()
-
+    var vpnManager = NETunnelProviderManager()
+    var app = NSApplication.shared()
     let lokinetComponent = "org.lokinet.NetworkExtension"
     var lokinetAdminTimer: DispatchSourceTimer?
-
 
     func runMain() {
         print("Starting up lokinet")
@@ -33,10 +32,12 @@ class LokinetMain: PlatformAppDelegate {
                 if let error = error {
                     print(error)
                 }
-
                 self.vpnManager.localizedDescription = "Lokinet"
                 self.vpnManager.isEnabled = true
             })
         }
+        app.finishLaunching()
+        app.run()
+        print("end")
     }
 }
