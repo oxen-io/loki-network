@@ -65,11 +65,15 @@ namespace llarp
 
     {
       updatingIntroSet = false;
-      for (const auto& intro : introset.intros)
+
+      // pick random first intro
+      std::vector<Introduction> intros = introset.intros;
+      if (intros.size() > 1)
       {
-        if (m_NextIntro.latency == 0s or m_NextIntro.latency > intro.latency)
-          m_NextIntro = intro;
+        std::shuffle(intros.begin(), intros.end(), CSRNG{});
       }
+      m_NextIntro = intros[0];
+
       currentConvoTag.Randomize();
       lastShift = Now();
       // add send and connect timeouts to the parent endpoints path alignment timeout
