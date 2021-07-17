@@ -422,8 +422,7 @@ namespace llarp
       }
 
       // check for half open state where we can send but we get nothing back
-      if (m_LastInboundTraffic == 0s and timeout > 0s and now >= timeout
-          and now - timeout > connectTimeout)
+      if (m_LastInboundTraffic == 0s and now - createdAt > connectTimeout)
         return true;
       // if we are dead return true so we are removed
       return timeout > 0s ? (now >= timeout && now - timeout > sendTimeout)
